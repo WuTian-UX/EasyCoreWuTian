@@ -34,9 +34,7 @@ namespace EasyCore.API.Controllers
                 Content = JsonConvert.SerializeObject(result)
 
             };
+
         }
-
-
-
     }
 }

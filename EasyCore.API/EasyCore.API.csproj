@@ -6,6 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.11" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="3.19.80" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.101" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasyCore.BLL\EasyCore.BLL.csproj" />
+    <ProjectReference Include="..\EasyCore.Entity\EasyCore.Entity.csproj" />
+    <ProjectReference Include="..\EasyCore.Unity\EasyCore.Unity.csproj" />
   </ItemGroup>
  
 

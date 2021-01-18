@@ -5,15 +5,20 @@
  * 业务层服务接口
  *  -------------------------------------------------------------------------*/
 
+using EasyCore.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+
 namespace EasyCore.BLL
 {
     public interface IDemoService
     {
 
         /// <summary>
-        /// DEMO业务
+        /// DEMO 用Expression
         /// </summary>
-        void DemoDoSomeThing();
+        List<View_DemoPerson> DemoDoSomeThing(Expression<Func<View_DemoPerson, bool>> lambda = null);
 
 
     }

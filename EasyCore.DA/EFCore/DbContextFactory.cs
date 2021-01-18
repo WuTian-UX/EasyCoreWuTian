@@ -2,8 +2,9 @@
  * 作者：WuTian
  * 版本号：v1.0
  * 本类主要用途描述及食用方式：
- * DbContext工厂类
+ * DbContext工厂类(EF用的)
  *  -------------------------------------------------------------------------*/
+
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyCore.DA
@@ -21,11 +22,9 @@ namespace EasyCore.DA
 
             switch (dbType)
             {
-                case "sqlserver":
-                    //dbContext = CreateSqlServerContext();
-                    break;
+                
                 case "mysql":
-                    //dbContext = CreateMySqlContext();
+                    dbContext = CreateMySQLContext();
                     break;
                 case "oracle":
                     dbContext = CreateOracleContext();
@@ -37,7 +36,7 @@ namespace EasyCore.DA
 
 
 
-        #region 创建dbContext
+        #region 创建EF用的 dbContext
 
 
         /// <summary>
@@ -47,16 +46,16 @@ namespace EasyCore.DA
         static DbContext CreateOracleContext()
         {
 
-            DbContextOptions<OracleContext> options = new DbContextOptions<OracleContext>();
-
-            OracleContext oracleContext = new OracleContext(options);
-
-
+            DbContextOptions<OracleContextEF> options = new DbContextOptions<OracleContextEF>();
+            OracleContextEF oracleContext = new OracleContextEF(options);
             return oracleContext;
         }
 
 
-
+        /// <summary>
+        /// 创建MySQL Dbcontext
+        /// </summary>
+        /// <returns></returns>
         static DbContext CreateMySQLContext()
         {
 
@@ -66,5 +65,7 @@ namespace EasyCore.DA
         }
 
         #endregion
+
+   
     }
 }

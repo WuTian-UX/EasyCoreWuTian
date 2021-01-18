@@ -10,9 +10,9 @@ using EasyCore.Entity;
 
 namespace EasyCore.DA
 {
-    public class OracleContext : DbContext
+    public class OracleContextEF : DbContext
     {
-        public OracleContext(DbContextOptions<OracleContext> options) : base(options)
+        public OracleContextEF(DbContextOptions<OracleContextEF> options) : base(options)
         { }
 
 
@@ -34,7 +34,9 @@ namespace EasyCore.DA
 
 
         //实体
-        public DbSet<LY_INTELLECT_SUPPUPLOADFILE> LY_INTELLECT_SUPPUPLOADFILE { get; set; }
 
+
+        public DbSet<Demo_Age> Demo_Age { get; set; }
+        public DbSet<Demo_Name> Demo_Name { get; set; }
     }
 }

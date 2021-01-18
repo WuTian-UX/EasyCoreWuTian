@@ -4,22 +4,42 @@
  * 本类主要用途描述及食用方式：
  * 所有业务层服务实例实例化时，构造DbContext
  *  -------------------------------------------------------------------------*/
+using Chloe;
 using EasyCore.DA;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace EasyCore.BLL
 {
     public class ServiceBase
     {
 
-        DbContext _dbContext;
+        //private DbContext _dbContext;
 
-        public DbContext DbContext
+        //public DbContext DbContext
+        //{
+        //    get
+        //    {
+        //        if (_dbContext == null)
+        //            _dbContext = DbContextFactory.CreateContext();
+        //        return _dbContext;
+        //    }
+        //    set
+        //    {
+        //        _dbContext = value;
+        //    }
+        //}
+
+
+        private IDbContext _dbContext;
+        public IDbContext DbContext
         {
             get
             {
                 if (this._dbContext == null)
-                    this._dbContext = DbContextFactory.CreateContext();
+                    this._dbContext = CholeDbContextFactory.CreateContext();
                 return this._dbContext;
             }
             set

@@ -14,7 +14,6 @@ namespace EasyCore.API.Controllers
     /// </summary>
     public class ErrorCatchAttribute : ExceptionFilterAttribute
     {
-        
         public override void OnException(ExceptionContext actionExecutedContext)
         {
 
@@ -22,7 +21,5 @@ namespace EasyCore.API.Controllers
             actionExecutedContext.Result = result;
 
         }
-
-
     }
 }
