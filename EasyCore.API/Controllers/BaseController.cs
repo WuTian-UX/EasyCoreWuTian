@@ -12,7 +12,7 @@ namespace EasyCore.API.Controllers
     /// <summary>
     /// 基类控制器
     /// </summary>
-    [ParaModelValidate]
+    //[ParaModelValidate]
     //[ErrorCatch]  
     public class BaseController : ControllerBase
     {

@@ -34,6 +34,9 @@ namespace EasyCore.API
             services.AddControllersWithViews(options => {
                 options.Filters.Add(typeof(ErrorCatchAttribute));
             });
+            services.AddControllersWithViews(options => {
+                options.Filters.Add(typeof(ParaModelValidateAttribute));
+            });
             #endregion
 
         }

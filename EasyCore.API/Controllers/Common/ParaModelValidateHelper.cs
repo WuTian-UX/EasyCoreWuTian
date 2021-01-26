@@ -3,6 +3,7 @@
  * 版本号：v1.0
  * 本类主要用途及食用方式：
  * 根据参数上的特性进行不同类型的参数校验
+ * 抛出ArgumentException
  *  -------------------------------------------------------------------------*/
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +36,7 @@ namespace EasyCore.API
                     if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
                     {
 
-                        throw new Exception(string.Format("缺少必填参数{0}", item.Name));
+                        throw new ArgumentException(string.Format("缺少必填参数{0}", item.Name));
 
                     }
                 }
@@ -43,8 +44,12 @@ namespace EasyCore.API
                 //增加其他类型的校验的话接着写IF
                 //System.ComponentModel.DataAnnotations
 
+                        
 
             }
+
+
+
 
         }
     }
