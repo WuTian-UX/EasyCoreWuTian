@@ -6,45 +6,24 @@
  *  -------------------------------------------------------------------------*/
 using Chloe;
 using EasyCore.DA;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace EasyCore.BLL
 {
     public class ServiceBase
     {
 
-        //private DbContext _dbContext;
-
-        //public DbContext DbContext
-        //{
-        //    get
-        //    {
-        //        if (_dbContext == null)
-        //            _dbContext = DbContextFactory.CreateContext();
-        //        return _dbContext;
-        //    }
-        //    set
-        //    {
-        //        _dbContext = value;
-        //    }
-        //}
-
-
         private IDbContext _dbContext;
         public IDbContext DbContext
         {
             get
             {
-                if (this._dbContext == null)
-                    this._dbContext = CholeDbContextFactory.CreateContext();
-                return this._dbContext;
+                if (_dbContext == null)
+                    _dbContext = CholeDbContextFactory.CreateContext();
+                return _dbContext;
             }
             set
             {
-                this._dbContext = value;
+                _dbContext = value;
             }
         }
 

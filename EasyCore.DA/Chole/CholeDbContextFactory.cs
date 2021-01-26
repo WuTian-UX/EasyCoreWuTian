@@ -6,13 +6,11 @@
  *  -------------------------------------------------------------------------*/
 using Chloe;
 using Chloe.Oracle;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using EasyCore.Unity;
 
 namespace EasyCore.DA
 {
-    public class CholeDbContextFactory
+    public static class CholeDbContextFactory
     {
         public static IDbContext CreateContext()
         {

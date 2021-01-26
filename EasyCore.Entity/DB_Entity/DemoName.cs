@@ -2,23 +2,19 @@
  * 作者：WuTian
  * 版本号：v1.0
  * 本类主要用途描述及食用方式：
- * 
+ * Chloe数据库实体
  *  -------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Chloe.Annotations;
 
 namespace EasyCore.Entity
 {
-    public class View_DemoPerson
+    [Table("DEMO_NAME")]
+    public class DemoName
     {
+        [Column("ID", IsPrimaryKey = true)]
         public string ID { get; set; }
 
-
-
+        [Column("Name")]
         public string Name { get; set; }
-
-        public string Age { get; set; }
-
     }
 }

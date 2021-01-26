@@ -16,25 +16,28 @@ namespace EasyCore.BLL
     public class DemoService : ServiceBase, IDemoService
     {
 
-       
-
-        public List<View_DemoPerson> DemoDoSomeThing(Expression<Func<View_DemoPerson, bool>> lambda = null)
+        public List<ViewDemoPerson> DemoDoSomeThing(Expression<Func<ViewDemoPerson, bool>> lambda = null)
         {
-            List<View_DemoPerson> list = new List<View_DemoPerson>();
+            List<ViewDemoPerson> list = new List<ViewDemoPerson>();
             using (DbContext)
             {
 
-                IQuery<Demo_Name> query_DemoName = DbContext.Query<Demo_Name>();
-                IQuery<Demo_Age> query_DemoAge = DbContext.Query<Demo_Age>();
+                IQuery<DemoName> query_DemoName = DbContext.Query<DemoName>();
+                IQuery<DemoAge> query_DemoAge = DbContext.Query<DemoAge>();
 
-                IQuery<View_DemoPerson> query_View_DemoPerson = query_DemoName.LeftJoin(query_DemoAge, (x, y) => x.ID == y.ID)
-                    .Select((x, y) => new View_DemoPerson { ID = x.ID, Name = x.Name, Age = y.Age });
+                IQuery<ViewDemoPerson> query_View_DemoPerson =
+                    query_DemoName.LeftJoin(query_DemoAge, (x, y) => x.ID == y.ID)
+                    .Select(
+                        (x, y) => new ViewDemoPerson
+                        {
+                            ID = x.ID,
+                            Name = x.Name,
+                            Age = y.Age
+                        });
 
-                if (lambda != null)
-                {
-                    query_View_DemoPerson = query_View_DemoPerson.Where(lambda);
-                }
 
+
+                query_View_DemoPerson = query_View_DemoPerson.Where(lambda);
 
                 list = query_View_DemoPerson.ToList();
 
@@ -42,37 +45,6 @@ namespace EasyCore.BLL
             return list;
 
         }
-
-
-
-
-
-        public class SUPPUPLOADFILE_ViewModel
-        {
-
-            public string B_ID { get; set; }
-
-
-            public int TYPE_ID { get; set; }
-
-
-            public string FILE_NAME { get; set; }
-        }
-
-        public class Demo_Person
-        {
-
-            public string ID { get; set; }
-
-            public string Name { get; set; }
-
-            public string Age { get; set; }
-
-
-
-        }
-
-
 
     }
 }

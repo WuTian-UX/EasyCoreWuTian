@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using EasyCore.BLL;
 
 namespace EasyCore.API
 {
@@ -20,6 +21,21 @@ namespace EasyCore.API
             services.AddControllers();
 
             services.AddControllersWithViews().AddNewtonsoftJson();
+
+
+            #region ÅäÖÃÒÀÀµ×¢Èë
+
+            services.AddScoped(typeof(IDemoService), typeof(DemoService));
+
+            #endregion
+
+
+            #region ÅäÖÃ¹ýÂËÆ÷
+            services.AddControllersWithViews(options => {
+                options.Filters.Add(typeof(ErrorCatchAttribute));
+            });
+            #endregion
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

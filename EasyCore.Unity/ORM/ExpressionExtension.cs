@@ -23,7 +23,7 @@ namespace EasyCore.Unity
     public class ParameterExpressionReplacer : ExpressionVisitor
     {
         // Fields
-        private ParameterExpression replaceWith;
+        private readonly ParameterExpression replaceWith;
         private ParameterExpressionReplacer(ParameterExpression _replaceWith)
         {
             replaceWith = _replaceWith;

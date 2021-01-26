@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace EasyCore.API
 {
-    public class EnumHelper
+    public static class EnumHelper
     {
         private static string UnknownError { get; } = "未知错误";
 

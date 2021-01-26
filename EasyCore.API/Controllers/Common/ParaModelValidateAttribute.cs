@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EasyCore.API.Controllers
+namespace EasyCore.API
 {
 
     /// <summary>
@@ -19,17 +19,17 @@ namespace EasyCore.API.Controllers
     public class ParaModelValidateAttribute : ActionFilterAttribute
     {
 
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
 
             //本方法的所有参数描述符
-            IList<ParameterDescriptor> actionParameters = filterContext.ActionDescriptor.Parameters;
+            IList<ParameterDescriptor> actionParameters = context.ActionDescriptor.Parameters;
 
             //只有这个方法需要参数的时候才进行校验
             if (actionParameters.Count != 0)
             {
 
-                dynamic paraModel = filterContext.ActionArguments.FirstOrDefault().Value;
+                dynamic paraModel = context.ActionArguments.FirstOrDefault().Value;
 
                 ParaModelValidateHelper.Validate(paraModel);
 

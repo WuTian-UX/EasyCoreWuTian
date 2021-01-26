@@ -8,12 +8,13 @@ using Chloe.Infrastructure;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Data;
+using EasyCore.Unity;
 
 namespace EasyCore.DA
 {
     public class OracleConnectionFactory : IDbConnectionFactory
     {
-        string _connString = null;
+        private readonly string _connString = null;
         public OracleConnectionFactory()
         {
 
@@ -24,7 +25,13 @@ namespace EasyCore.DA
             string UserId = AppConfigurtaionServices.Configuration["OracleSettings:UserId"];
             string Password = AppConfigurtaionServices.Configuration["OracleSettings:Password"];
             _connString =
-                "Data Source = (DESCRIPTION = (ADDRESS = (PROTOCOL = " + PROTOCOL + ")(HOST = " + HOST + ")(PORT = " + PORT + "))(CONNECT_DATA = (SERVICE_NAME = " + SERVICE_NAME + "))); User Id = " + UserId + "; Password = " + Password + "; ";
+
+                "Data Source = " +
+                    "(DESCRIPTION = " +
+                    "(ADDRESS_LIST = " +
+                        "(ADDRESS = (PROTOCOL = " + PROTOCOL + ")(HOST = " + HOST + ")(PORT = " + PORT + "))" +
+                    ")" +
+                    "(CONNECT_DATA = (SERVICE_NAME = " + SERVICE_NAME + "))); User Id = " + UserId + "; Password = " + Password + "; ";
 
         }
         public IDbConnection CreateConnection()
@@ -35,14 +42,12 @@ namespace EasyCore.DA
         }
     }
 
-    class OracleConnectionDecorator : IDbConnection, IDisposable
+    internal class OracleConnectionDecorator : IDbConnection,IDisposable
     {
-        private OracleConnection _oracleConnection;
+        private readonly OracleConnection _oracleConnection;
         public OracleConnectionDecorator(OracleConnection oracleConnection)
         {
-            if (oracleConnection == null)
-                throw new Exception("Please call 911.");
-            _oracleConnection = oracleConnection;
+            _oracleConnection = oracleConnection ?? throw new Exception("Please call 911.");
         }
 
         public string ConnectionString

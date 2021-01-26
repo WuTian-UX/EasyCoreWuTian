@@ -15,11 +15,7 @@ namespace EasyCore.BLL
     public interface IDemoService
     {
 
-        /// <summary>
-        /// DEMO 用Expression
-        /// </summary>
-        List<View_DemoPerson> DemoDoSomeThing(Expression<Func<View_DemoPerson, bool>> lambda = null);
-
+        List<ViewDemoPerson> DemoDoSomeThing(Expression<Func<ViewDemoPerson, bool>> lambda = null);
 
     }
 }

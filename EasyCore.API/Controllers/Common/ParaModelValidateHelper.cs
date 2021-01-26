@@ -8,7 +8,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace EasyCore.API.Controllers
+namespace EasyCore.API
 {
 
     public static class ParaModelValidateHelper

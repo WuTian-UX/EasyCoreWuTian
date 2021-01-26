@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Configuration.Json;
 
 
-namespace EasyCore.DA
+namespace EasyCore.Unity
 {
-    public class AppConfigurtaionServices
+    public static class AppConfigurtaionServices
     {
         public static IConfiguration Configuration { get; set; }
         static AppConfigurtaionServices()

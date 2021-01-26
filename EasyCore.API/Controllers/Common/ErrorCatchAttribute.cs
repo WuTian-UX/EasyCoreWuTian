@@ -7,18 +7,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace EasyCore.API.Controllers
+namespace EasyCore.API
 {
     /// <summary>
     /// 错误捕捉过滤器 NetCore版
     /// </summary>
     public class ErrorCatchAttribute : ExceptionFilterAttribute
     {
-        public override void OnException(ExceptionContext actionExecutedContext)
+        public override void OnException(ExceptionContext context)
         {
 
-            ContentResult result = JsonContentResultBuilder.BuildViewJsonResult(null, StatuCode.Fail, actionExecutedContext.Exception.Message);
-            actionExecutedContext.Result = result;
+            ContentResult result = JsonContentResultBuilder.BuildViewJsonResult(null, StatuCode.Fail, context.Exception.Message);
+            context.Result = result;
 
         }
     }

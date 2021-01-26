@@ -12,5 +12,13 @@ namespace EasyCore.API
 
         public string Name { get; set; }
 
+        /// <summary>
+        /// 当前页码
+        /// </summary>
+        public string Page { get; set; }
+        /// <summary>
+        /// 每页数据数数量
+        /// </summary>
+        public string PageSize { get; set; }
     }
 }

@@ -7,13 +7,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace EasyCore.API.Controllers
+namespace EasyCore.API
 {
-    
-    public class JsonContentResultBuilder
+
+    public static class JsonContentResultBuilder
     {
 
-        public static ContentResult BuildViewJsonResult(dynamic data, StatuCode statuCode= StatuCode.Success, string errorMessage = null)
+        public static ContentResult BuildViewJsonResult(dynamic data, StatuCode statuCode = StatuCode.Success, string errorMessage = null)
         {
             string statuDescription = statuCode.Description();
             string separator = !string.IsNullOrEmpty(statuDescription) ? "：" : string.Empty;

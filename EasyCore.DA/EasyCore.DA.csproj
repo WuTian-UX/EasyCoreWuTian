@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EasyCore.Entity\EasyCore.Entity.csproj" />
+    <ProjectReference Include="..\EasyCore.Unity\EasyCore.Unity.csproj" />
   </ItemGroup>
 
 </Project>
