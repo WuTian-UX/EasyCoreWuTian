@@ -29,7 +29,8 @@ namespace EasyCore.API.Controllers
         }
 
         #endregion
-    
+
+        [ParaModelValidateIgnore]
         public ActionResult Login(DemoParaModel paraModel)
         {
 
