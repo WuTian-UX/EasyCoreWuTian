@@ -30,7 +30,7 @@ namespace EasyCore.API
             #endregion
 
 
-            #region ÅäÖÃ¹ýÂËÆ÷
+            #region ÅäÖÃÄ¬ÈÏ¹ýÂËÆ÷
             services.AddControllersWithViews(options => {
                 options.Filters.Add(typeof(ErrorCatchAttribute));
             });

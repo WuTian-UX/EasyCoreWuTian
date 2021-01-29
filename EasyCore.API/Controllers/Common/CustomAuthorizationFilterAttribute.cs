@@ -2,7 +2,7 @@
  * 作者：WuTian
  * 版本号：v1.0
  * 本类主要用途及食用方式：
- * 鉴权过滤器
+ * 鉴权过滤器（未完成）
  *  -------------------------------------------------------------------------*/
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

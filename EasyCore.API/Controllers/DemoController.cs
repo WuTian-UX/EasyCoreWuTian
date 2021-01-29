@@ -48,7 +48,7 @@ namespace EasyCore.API.Controllers
             }
 
 
-            //获取视图模型数据
+            //获取返回模型数据
             List<ViewDemoPerson> list = demoService.DemoDoSomeThing(lambdaExpression);
 
             //返回数据
