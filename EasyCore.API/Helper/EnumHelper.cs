@@ -32,4 +32,17 @@ namespace EasyCore.API
             return attributes.Description;
         }
     }
+
+
+
+    public class obj
+    {
+        int bar = 1;
+        public int foo()
+        {
+            return this.bar;
+        }
+    }
+
+
 }

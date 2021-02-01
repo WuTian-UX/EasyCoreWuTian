@@ -18,30 +18,25 @@ namespace EasyCore.BLL
 
         public List<ViewDemoPerson> DemoDoSomeThing(Expression<Func<ViewDemoPerson, bool>> lambda = null)
         {
-            List<ViewDemoPerson> list = new List<ViewDemoPerson>();
-            using (DbContext)
-            {
+           
+            IQuery<DemoName> query_DemoName = DbContext.Query<DemoName>();
+            IQuery<DemoAge> query_DemoAge = DbContext.Query<DemoAge>();
 
-                IQuery<DemoName> query_DemoName = DbContext.Query<DemoName>();
-                IQuery<DemoAge> query_DemoAge = DbContext.Query<DemoAge>();
-
-                IQuery<ViewDemoPerson> query_View_DemoPerson =
-                    query_DemoName.LeftJoin(query_DemoAge, (x, y) => x.ID == y.ID)
-                    .Select(
-                        (x, y) => new ViewDemoPerson
-                        {
-                            ID = x.ID,
-                            Name = x.Name,
-                            Age = y.Age
-                        });
+            IQuery<ViewDemoPerson> query_View_DemoPerson =
+                query_DemoName.LeftJoin(query_DemoAge, (x, y) => x.ID == y.ID)
+                .Select(
+                    (x, y) => new ViewDemoPerson
+                    {
+                        ID = x.ID,
+                        Name = x.Name,
+                        Age = y.Age
+                    });
 
 
+            query_View_DemoPerson = query_View_DemoPerson.Where(lambda);
 
-                query_View_DemoPerson = query_View_DemoPerson.Where(lambda);
+            List<ViewDemoPerson> list = query_View_DemoPerson.ToList();
 
-                list = query_View_DemoPerson.ToList();
-
-            }
             return list;
 
         }
