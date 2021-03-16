@@ -16,8 +16,7 @@ using System.Linq.Expressions;
 
 namespace EasyCore.API.Controllers
 {
-    //[ServiceFilter(typeof(JsonWebTokenValidateAttribute))]
-    //[JsonWebTokenValidateAttribute]
+
     public class DemoController : BaseController
     {
 
