@@ -6,17 +6,18 @@
  * 传进去Expression<Func<T,true>>那么返回的是IQueryable类型的接口集合
  * 传进去Func<T,true>那么返回值是IEnumable的接口类型的集合
  *  -------------------------------------------------------------------------*/
-using EasyCore.Entity;
+using EasyCore.BLL;
+using EasyCore.Model;
+using EasyCore.Unity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using EasyCore.Unity;
-using EasyCore.BLL;
 
 namespace EasyCore.API.Controllers
 {
-
+    //[ServiceFilter(typeof(JsonWebTokenValidateAttribute))]
+    //[JsonWebTokenValidateAttribute]
     public class DemoController : BaseController
     {
 
@@ -30,13 +31,13 @@ namespace EasyCore.API.Controllers
 
         #endregion
 
-       
+        
         public ActionResult Login(DemoParaModel paraModel)
         {
 
-          
+
             //创建表达式
-            Expression<Func<ViewDemoPerson, bool>> lambdaExpression = t => true;
+            Expression<Func<DemoViewPerson, bool>> lambdaExpression = t => true;
 
             //构造表达式
             if (!string.IsNullOrWhiteSpace(paraModel.Age))
@@ -49,8 +50,8 @@ namespace EasyCore.API.Controllers
             }
 
             //获取返回模型数据
-            List<ViewDemoPerson> list = demoService.DemoDoSomeThing(lambdaExpression);
-            
+            List<DemoViewPerson> list = demoService.DemoDoSomeThing(lambdaExpression);
+
             //返回数据
             return JsonResult(list);
 

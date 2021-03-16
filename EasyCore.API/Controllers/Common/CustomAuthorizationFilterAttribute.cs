@@ -24,12 +24,12 @@ namespace EasyCore.API.Controllers
             }
 
             //获取Cookie
-            string userCookie = context.HttpContext.Request.Cookies["CurrentUser"]; 
+            string userCookie = context.HttpContext.Request.Cookies["CurrentUser"];
 
             if (userCookie == null)
             {
                 //没有Cookie则跳转到登陆页面
-                context.Result = new RedirectResult("/Home/Login");  
+                context.Result = new RedirectResult("/Home/Login");
             }
             else
             {

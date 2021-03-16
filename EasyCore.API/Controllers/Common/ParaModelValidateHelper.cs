@@ -44,7 +44,7 @@ namespace EasyCore.API
                 //增加其他类型的校验的话接着写IF
                 //System.ComponentModel.DataAnnotations
 
-                        
+
 
             }
 

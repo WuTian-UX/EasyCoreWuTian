@@ -5,8 +5,7 @@
  * 业务层服务接口
  *  -------------------------------------------------------------------------*/
 
-using Chloe;
-using EasyCore.Entity;
+using EasyCore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -16,7 +15,7 @@ namespace EasyCore.BLL
     public interface IDemoService
     {
 
-        List<ViewDemoPerson> DemoDoSomeThing(Expression<Func<ViewDemoPerson, bool>> lambda = null);
+        List<DemoViewPerson> DemoDoSomeThing(Expression<Func<DemoViewPerson, bool>> lambda = null);
 
     }
 }

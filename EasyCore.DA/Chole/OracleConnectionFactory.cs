@@ -5,10 +5,10 @@
  * Chole的OracleConnectionFactory
  *  -------------------------------------------------------------------------*/
 using Chloe.Infrastructure;
+using EasyCore.Unity;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Data;
-using EasyCore.Unity;
 
 namespace EasyCore.DA
 {

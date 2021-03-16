@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyCore.BLL", "EasyCore.BL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyCore.Entity", "EasyCore.Entity\EasyCore.Entity.csproj", "{A66F2A05-2BA6-469E-A12B-7DA7BA7C6A09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCore.Unity", "EasyCore.Unity\EasyCore.Unity.csproj", "{BD04F799-E535-40B6-87A4-07E999FB919F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyCore.Unity", "EasyCore.Unity\EasyCore.Unity.csproj", "{BD04F799-E535-40B6-87A4-07E999FB919F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCore.Model", "EasyCore.Model\EasyCore.Model.csproj", "{C39C2254-3120-4DE2-937F-8DF878C77479}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BD04F799-E535-40B6-87A4-07E999FB919F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD04F799-E535-40B6-87A4-07E999FB919F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD04F799-E535-40B6-87A4-07E999FB919F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C39C2254-3120-4DE2-937F-8DF878C77479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C39C2254-3120-4DE2-937F-8DF878C77479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C39C2254-3120-4DE2-937F-8DF878C77479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C39C2254-3120-4DE2-937F-8DF878C77479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EasyCore.DA\EasyCore.DA.csproj" />
+    <ProjectReference Include="..\EasyCore.Model\EasyCore.Model.csproj" />
   </ItemGroup>
 
 </Project>

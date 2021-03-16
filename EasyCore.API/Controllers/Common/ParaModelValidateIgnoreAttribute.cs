@@ -9,7 +9,7 @@ using System;
 namespace EasyCore.API
 {
     /// <summary>
-    /// 忽略参数校验特性
+    /// 跳过参数校验特性
     /// </summary>
     public class ParaModelValidateIgnoreAttribute : Attribute
     {

@@ -5,28 +5,28 @@
  * 业务层服务实例,继承服务基类和本服务的接口
  * DbContext在ServiceBase中构造
  *  -------------------------------------------------------------------------*/
+using Chloe;
 using EasyCore.Entity;
+using EasyCore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Chloe;
-using System.Linq;
 
 namespace EasyCore.BLL
 {
     public class DemoService : ServiceBase, IDemoService
     {
 
-        public List<ViewDemoPerson> DemoDoSomeThing(Expression<Func<ViewDemoPerson, bool>> lambda = null)
+        public List<DemoViewPerson> DemoDoSomeThing(Expression<Func<DemoViewPerson, bool>> lambda = null)
         {
 
             IQuery<DemoName> demoNameQ = DbContext.Query<DemoName>();
             IQuery<DemoAge> demoAgeQ = DbContext.Query<DemoAge>();
 
-            IQuery<ViewDemoPerson> demoPersonQ =
+            IQuery<DemoViewPerson> demoPersonQ =
                 demoNameQ.LeftJoin(demoAgeQ, (x, y) => x.ID == y.ID)
                 .Select(
-                    (x, y) => new ViewDemoPerson
+                    (x, y) => new DemoViewPerson
                     {
                         ID = x.ID,
                         Name = x.Name,
@@ -37,7 +37,7 @@ namespace EasyCore.BLL
 
 
 
-            List<ViewDemoPerson> demoPersonList = demoPersonQ.ToList();
+            List<DemoViewPerson> demoPersonList = demoPersonQ.ToList();
 
             return demoPersonList;
 

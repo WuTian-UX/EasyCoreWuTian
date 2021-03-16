@@ -1,11 +1,11 @@
+using EasyCore.BLL;
+using EasyCore.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using EasyCore.BLL;
-using EasyCore.Unity;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace EasyCore.API
 {
@@ -34,29 +34,36 @@ namespace EasyCore.API
             #endregion
 
 
-            #region 配置管道过滤器
+            #region 配置默认开启的管道过滤器
 
             //报错格式化
-            services.AddControllersWithViews(options => {
+            services.AddControllersWithViews(options =>
+            {
                 options.Filters.Add(typeof(ErrorCatchAttribute));
             });
             //参数校验
-            services.AddControllersWithViews(options => {
+            services.AddControllersWithViews(options =>
+            {
                 options.Filters.Add(typeof(ParaModelValidateAttribute));
             });
-            #endregion
+            //JWT校验
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(typeof(JsonWebTokenValidateAttribute));
+            });
 
+            #endregion
 
 
             #region JsonWebToken服务相关
 
-            //JsonWebToken服务
-            services.AddScoped(typeof(ITokenHelper), typeof(TokenHelper));
+            //JsonWebToken服务依赖注入
+            services.AddScoped(typeof(ITokenService), typeof(TokenService));
 
-            //读取配置文件配置的jwt相关配置
-            services.Configure<JwtConfig>(Configuration.GetSection("JWT"));
+            //读取配置文件配置的JsonWebToken相关配置
+            services.Configure<JwtConfig>(Configuration.GetSection("JsonWebToken"));
 
-            //启用JWT
+            //启用JsonWebToken
             services.AddAuthentication(Options =>
             {
                 Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -81,11 +88,11 @@ namespace EasyCore.API
 
             app.UseRouting();
 
+            //授权中间件
             //app.UseAuthorization();
 
-            //启用认证中间件
+            //使用认证中间件
             app.UseAuthentication();
-
 
             app.UseEndpoints(endpoints =>
             {
