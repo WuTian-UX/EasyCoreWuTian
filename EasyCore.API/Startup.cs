@@ -61,7 +61,7 @@ namespace EasyCore.API
             services.AddScoped(typeof(ITokenService), typeof(TokenService));
 
             //读取配置文件配置的JsonWebToken相关配置
-            services.Configure<JwtConfig>(Configuration.GetSection("JsonWebToken"));
+            services.Configure<JwtConfigModel>(Configuration.GetSection("JsonWebToken"));
 
             //启用JsonWebToken
             services.AddAuthentication(Options =>

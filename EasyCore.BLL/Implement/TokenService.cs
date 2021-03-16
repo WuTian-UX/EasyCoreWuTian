@@ -22,8 +22,8 @@ namespace EasyCore.BLL
 
         #region 依赖注入
 
-        private readonly IOptions<JwtConfig> _options;
-        public TokenService(IOptions<JwtConfig> options)
+        private readonly IOptions<JwtConfigModel> _options;
+        public TokenService(IOptions<JwtConfigModel> options)
         {
             _options = options;
         }
@@ -54,7 +54,7 @@ namespace EasyCore.BLL
         {
 
 
-            //携带的额外数据，类似一个键值对
+            //携带的负载数据，类似一个键值对
             List<Claim> claims = new List<Claim>();
 
             //填充负载数据的键值对
@@ -76,8 +76,9 @@ namespace EasyCore.BLL
 
         private LoginViewModel CreateToken(List<Claim> claims)
         {
-            var now = DateTime.Now; var expires = now.Add(TimeSpan.FromMinutes(_options.Value.AccessTokenExpiresMinutes));
-            var token = new JwtSecurityToken(
+            DateTime now = DateTime.Now;
+            DateTime expires = now.Add(TimeSpan.FromMinutes(_options.Value.AccessTokenExpiresMinutes));
+            JwtSecurityToken token = new JwtSecurityToken(
                 issuer: _options.Value.Issuer,//Token发布者
                 audience: _options.Value.Audience,//Token接受者
                 claims: claims,//携带的负载数据
@@ -97,12 +98,12 @@ namespace EasyCore.BLL
         public void Validate(string encodeJwt)
         {
 
-            var jwtArr = encodeJwt.Split('.');
+            string[] jwtArr = encodeJwt.Split('.');
 
-            var header = JsonConvert.DeserializeObject<Dictionary<string, string>>(Base64UrlEncoder.Decode(jwtArr[0]));
-            var payLoad = JsonConvert.DeserializeObject<Dictionary<string, string>>(Base64UrlEncoder.Decode(jwtArr[1]));
+            Dictionary<string, string> header = JsonConvert.DeserializeObject<Dictionary<string, string>>(Base64UrlEncoder.Decode(jwtArr[0]));
+            Dictionary<string, string> payLoad = JsonConvert.DeserializeObject<Dictionary<string, string>>(Base64UrlEncoder.Decode(jwtArr[1]));
             //配置文件中取出来的签名秘钥
-            var hs256 = new HMACSHA256(Encoding.ASCII.GetBytes(_options.Value.IssuerSigningKey));
+            HMACSHA256 hs256 = new HMACSHA256(Encoding.ASCII.GetBytes(_options.Value.IssuerSigningKey));
 
             //验证签名是否正确（把用户传递的签名部分取出来和服务器生成的签名匹配即可）
 
@@ -114,7 +115,7 @@ namespace EasyCore.BLL
 
 
             //其次验证是否在有效期内（也应该必须）
-            var now = ToUnixEpochDate(DateTime.UtcNow);
+            long now = ToUnixEpochDate(DateTime.UtcNow);
 
             if (now < long.Parse(payLoad["nbf"].ToString()) && now > long.Parse(payLoad["exp"].ToString()))
             {

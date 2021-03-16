@@ -6,7 +6,7 @@
  *  -------------------------------------------------------------------------*/
 namespace EasyCore.Model
 {
-    public class JwtConfig
+    public class JwtConfigModel
     {
         /// <summary>
         /// 发布者

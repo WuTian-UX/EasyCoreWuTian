@@ -11,10 +11,10 @@ namespace EasyCore.API.Controllers
 
         #region 服务依赖
 
-        private readonly ITokenService tokenHelper;
-        public LoginController(ITokenService _tokenHelper)
+        private readonly ITokenService tokenService;
+        public LoginController(ITokenService _tokenService)
         {
-            tokenHelper = _tokenHelper;
+            tokenService = _tokenService;
         }
 
         #endregion
@@ -23,17 +23,22 @@ namespace EasyCore.API.Controllers
         {
 
 
-            //根据用户名和密码去数据库查询，判断用户是否存在，判断密码是否正确
+            //根据用户名和密码去数据库查询，判断用户是否存在，判断密码是否正确。并获取用户ID
             if (paraModel.UserLoginName == "NoUser")
             {
                 throw new Exception("当前用户不存在");
             }
+            
 
-            //带额外数据的JWT 
-            //TnToken tnToken = tokenHelper.CreateToken(keyValuePairs);
+            //负载数据
+            JwtClaimModel claimModel = new JwtClaimModel
+            {
+                UserId = "10001"
+            };
 
-            //不带额外数据的JWT 
-            LoginViewModel viewModel = tokenHelper.CreateToken();
+            //负载数据的JWT 
+            LoginViewModel viewModel = tokenService.CreateToken(claimModel);
+
 
             //返回前端
             return JsonResult(viewModel);
