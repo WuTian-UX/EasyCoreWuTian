@@ -5,6 +5,7 @@
  * 业务层服务接口
  *  -------------------------------------------------------------------------*/
 
+using Chloe;
 using EasyCore.Entity;
 using System;
 using System.Collections.Generic;

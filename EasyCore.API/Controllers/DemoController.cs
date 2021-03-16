@@ -30,10 +30,11 @@ namespace EasyCore.API.Controllers
 
         #endregion
 
-        [ParaModelValidateIgnore]
+       
         public ActionResult Login(DemoParaModel paraModel)
         {
 
+          
             //创建表达式
             Expression<Func<ViewDemoPerson, bool>> lambdaExpression = t => true;
 
@@ -47,14 +48,14 @@ namespace EasyCore.API.Controllers
                 lambdaExpression = lambdaExpression.And(t => t.Name == paraModel.Name);
             }
 
-
             //获取返回模型数据
             List<ViewDemoPerson> list = demoService.DemoDoSomeThing(lambdaExpression);
-
+            
             //返回数据
             return JsonResult(list);
 
         }
 
     }
+
 }

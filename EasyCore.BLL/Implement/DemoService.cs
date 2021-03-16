@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Chloe;
+using System.Linq;
 
 namespace EasyCore.BLL
 {
@@ -18,12 +19,12 @@ namespace EasyCore.BLL
 
         public List<ViewDemoPerson> DemoDoSomeThing(Expression<Func<ViewDemoPerson, bool>> lambda = null)
         {
-           
-            IQuery<DemoName> query_DemoName = DbContext.Query<DemoName>();
-            IQuery<DemoAge> query_DemoAge = DbContext.Query<DemoAge>();
 
-            IQuery<ViewDemoPerson> query_View_DemoPerson =
-                query_DemoName.LeftJoin(query_DemoAge, (x, y) => x.ID == y.ID)
+            IQuery<DemoName> demoNameQ = DbContext.Query<DemoName>();
+            IQuery<DemoAge> demoAgeQ = DbContext.Query<DemoAge>();
+
+            IQuery<ViewDemoPerson> demoPersonQ =
+                demoNameQ.LeftJoin(demoAgeQ, (x, y) => x.ID == y.ID)
                 .Select(
                     (x, y) => new ViewDemoPerson
                     {
@@ -32,14 +33,16 @@ namespace EasyCore.BLL
                         Age = y.Age
                     });
 
+            demoPersonQ = demoPersonQ.Where(lambda);
 
-            query_View_DemoPerson = query_View_DemoPerson.Where(lambda);
 
-            List<ViewDemoPerson> list = query_View_DemoPerson.ToList();
 
-            return list;
+            List<ViewDemoPerson> demoPersonList = demoPersonQ.ToList();
+
+            return demoPersonList;
 
         }
 
     }
+
 }
