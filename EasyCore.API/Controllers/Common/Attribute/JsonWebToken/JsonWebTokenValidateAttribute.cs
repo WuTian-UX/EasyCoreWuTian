@@ -1,11 +1,7 @@
-﻿using EasyCore.API;
-using EasyCore.BLL;
+﻿using EasyCore.BLL;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EasyCore.API
 {
